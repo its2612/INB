@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CustomerCredential">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsApporved" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="TotalCnt" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerRequestAccount">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountType" Type="varchar" MaxLength="50" />
+    <Property Name="BankState" Type="varchar" MaxLength="50" />
+    <Property Name="BankCity" Type="varchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="varchar" MaxLength="50" />
+    <Property Name="BranchIFSC" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerGender" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerDOB" Type="date" />
+    <Property Name="CustomerMobileNumber" Type="int" />
+    <Property Name="CustomerBalance" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerAadharCardNumber" Type="int" Nullable="false" />
+    <Property Name="CustomerEmailId" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerAddress" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerState" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerCity" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerPIN" Type="int" />
+    <Property Name="IsApproved" Type="bit" />
+  </EntityType>
+  <Association Name="FK_CustomerCredential_CustomerRequestAccount">
+    <End Role="CustomerRequestAccount" Type="Self.CustomerRequestAccount" Multiplicity="1" />
+    <End Role="CustomerCredential" Type="Self.CustomerCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerRequestAccount">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerCredential">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Usp_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BankAppModelStoreContainer">
+    <EntitySet Name="CustomerCredential" EntityType="Self.CustomerCredential" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerRequestAccount" EntityType="Self.CustomerRequestAccount" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CustomerCredential_CustomerRequestAccount" Association="Self.FK_CustomerCredential_CustomerRequestAccount">
+      <End Role="CustomerRequestAccount" EntitySet="CustomerRequestAccount" />
+      <End Role="CustomerCredential" EntitySet="CustomerCredential" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

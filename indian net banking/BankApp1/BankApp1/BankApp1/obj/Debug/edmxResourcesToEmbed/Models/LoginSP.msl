@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankAppModel1StoreContainer" CdmEntityContainer="BankAppEntities2">
+    <FunctionImportMapping FunctionImportName="login_pro" FunctionName="BankAppModel1.Store.login_pro" />
+  </EntityContainerMapping>
+</Mapping>

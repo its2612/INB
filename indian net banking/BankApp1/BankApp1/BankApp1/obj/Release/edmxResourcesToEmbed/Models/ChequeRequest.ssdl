@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankAppModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChequeRequest">
+    <Key>
+      <PropertyRef Name="ChequeNumber" />
+    </Key>
+    <Property Name="ChequeNumber" Type="int" Nullable="false" />
+    <Property Name="INBAccountNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="AccountHolderName" Type="varchar" MaxLength="50" />
+    <Property Name="ChequeAccountNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ChequeBranchName" Type="varchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="int" />
+    <Property Name="ChequeStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="BankAppModel3StoreContainer">
+    <EntitySet Name="ChequeRequest" EntityType="Self.ChequeRequest" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

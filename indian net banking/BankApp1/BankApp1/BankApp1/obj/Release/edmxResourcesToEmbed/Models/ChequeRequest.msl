@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankAppModel3StoreContainer" CdmEntityContainer="BankAppEntities4">
+    <EntitySetMapping Name="ChequeRequests">
+      <EntityTypeMapping TypeName="BankAppModel3.ChequeRequest">
+        <MappingFragment StoreEntitySet="ChequeRequest">
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="INBAccountNumber" ColumnName="INBAccountNumber" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+          <ScalarProperty Name="ChequeAccountNumber" ColumnName="ChequeAccountNumber" />
+          <ScalarProperty Name="ChequeBranchName" ColumnName="ChequeBranchName" />
+          <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

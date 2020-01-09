@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CustomerCredential">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsApporved" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="TotalCnt" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CustomerRequestAccount" Relationship="Self.FK_CustomerCredential_CustomerRequestAccount" FromRole="CustomerCredential" ToRole="CustomerRequestAccount" />
+  </EntityType>
+  <EntityType Name="CustomerRequestAccount">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BranchIFSC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerGender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerDOB" Type="DateTime" Precision="0" />
+    <Property Name="CustomerMobileNumber" Type="Int32" />
+    <Property Name="CustomerBalance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAadharCardNumber" Type="Int32" Nullable="false" />
+    <Property Name="CustomerEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerPIN" Type="Int32" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <NavigationProperty Name="CustomerCredentials" Relationship="Self.FK_CustomerCredential_CustomerRequestAccount" FromRole="CustomerRequestAccount" ToRole="CustomerCredential" />
+  </EntityType>
+  <Association Name="FK_CustomerCredential_CustomerRequestAccount">
+    <End Role="CustomerRequestAccount" Type="Self.CustomerRequestAccount" Multiplicity="1" />
+    <End Role="CustomerCredential" Type="Self.CustomerCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerRequestAccount">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerCredential">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CustomerCredentials" EntityType="Self.CustomerCredential" />
+    <EntitySet Name="CustomerRequestAccounts" EntityType="Self.CustomerRequestAccount" />
+    <AssociationSet Name="FK_CustomerCredential_CustomerRequestAccount" Association="Self.FK_CustomerCredential_CustomerRequestAccount">
+      <End Role="CustomerRequestAccount" EntitySet="CustomerRequestAccounts" />
+      <End Role="CustomerCredential" EntitySet="CustomerCredentials" />
+    </AssociationSet>
+    <FunctionImport Name="Usp_Login" ReturnType="Collection(BankAppModel.Usp_Login_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Usp_Login_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="IsApporved" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+  </ComplexType>
+</Schema>

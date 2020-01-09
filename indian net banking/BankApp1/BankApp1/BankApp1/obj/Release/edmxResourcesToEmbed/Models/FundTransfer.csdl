@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankAppModel5" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CustomerCredential">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsApporved" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="TotalCnt" Type="Int32" Nullable="false" />
+    <Property Name="CustomerBalance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CustomerRequestAccount" Relationship="Self.FK_CustomerCredential_CustomerRequestAccount" FromRole="CustomerCredential" ToRole="CustomerRequestAccount" />
+    <NavigationProperty Name="TransactionTables" Relationship="Self.FK_TransactionTable_CustomerCredential" FromRole="CustomerCredential" ToRole="TransactionTable" />
+  </EntityType>
+  <EntityType Name="CustomerRequestAccount">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BranchIFSC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerGender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerDOB" Type="DateTime" Precision="0" />
+    <Property Name="CustomerMobileNumber" Type="Int32" />
+    <Property Name="CustomerBalance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAadharCardNumber" Type="Int32" Nullable="false" />
+    <Property Name="CustomerEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerPIN" Type="Int32" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <NavigationProperty Name="CustomerCredentials" Relationship="Self.FK_CustomerCredential_CustomerRequestAccount" FromRole="CustomerRequestAccount" ToRole="CustomerCredential" />
+  </EntityType>
+  <EntityType Name="TransactionTable">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BenificiaryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IFSC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CustomerCredential" Relationship="Self.FK_TransactionTable_CustomerCredential" FromRole="TransactionTable" ToRole="CustomerCredential" />
+  </EntityType>
+  <Association Name="FK_CustomerCredential_CustomerRequestAccount">
+    <End Role="CustomerRequestAccount" Type="Self.CustomerRequestAccount" Multiplicity="1" />
+    <End Role="CustomerCredential" Type="Self.CustomerCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerRequestAccount">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerCredential">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionTable_CustomerCredential">
+    <End Role="CustomerCredential" Type="Self.CustomerCredential" Multiplicity="1" />
+    <End Role="TransactionTable" Type="Self.TransactionTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerCredential">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="TransactionTable">
+        <PropertyRef Name="AccountNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankAppEntities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CustomerCredentials" EntityType="Self.CustomerCredential" />
+    <EntitySet Name="CustomerRequestAccounts" EntityType="Self.CustomerRequestAccount" />
+    <EntitySet Name="TransactionTables" EntityType="Self.TransactionTable" />
+    <AssociationSet Name="FK_CustomerCredential_CustomerRequestAccount" Association="Self.FK_CustomerCredential_CustomerRequestAccount">
+      <End Role="CustomerRequestAccount" EntitySet="CustomerRequestAccounts" />
+      <End Role="CustomerCredential" EntitySet="CustomerCredentials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionTable_CustomerCredential" Association="Self.FK_TransactionTable_CustomerCredential">
+      <End Role="CustomerCredential" EntitySet="CustomerCredentials" />
+      <End Role="TransactionTable" EntitySet="TransactionTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

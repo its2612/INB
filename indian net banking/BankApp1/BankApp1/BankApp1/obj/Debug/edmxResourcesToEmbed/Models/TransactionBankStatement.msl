@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankAppModel7StoreContainer" CdmEntityContainer="BankAppEntities8">
+    <EntitySetMapping Name="ChequeRequests">
+      <EntityTypeMapping TypeName="BankAppModel7.ChequeRequest">
+        <MappingFragment StoreEntitySet="ChequeRequest">
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="INBAccountNumber" ColumnName="INBAccountNumber" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+          <ScalarProperty Name="ChequeAccountNumber" ColumnName="ChequeAccountNumber" />
+          <ScalarProperty Name="ChequeBranchName" ColumnName="ChequeBranchName" />
+          <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactForms">
+      <EntityTypeMapping TypeName="BankAppModel7.ContactForm">
+        <MappingFragment StoreEntitySet="ContactForm">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerCredentials">
+      <EntityTypeMapping TypeName="BankAppModel7.CustomerCredential">
+        <MappingFragment StoreEntitySet="CustomerCredential">
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsApporved" ColumnName="IsApporved" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TotalCnt" ColumnName="TotalCnt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerRequestAccounts">
+      <EntityTypeMapping TypeName="BankAppModel7.CustomerRequestAccount">
+        <MappingFragment StoreEntitySet="CustomerRequestAccount">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="BankState" ColumnName="BankState" />
+          <ScalarProperty Name="BankCity" ColumnName="BankCity" />
+          <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+          <ScalarProperty Name="BranchIFSC" ColumnName="BranchIFSC" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerGender" ColumnName="CustomerGender" />
+          <ScalarProperty Name="CustomerDOB" ColumnName="CustomerDOB" />
+          <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
+          <ScalarProperty Name="CustomerBalance" ColumnName="CustomerBalance" />
+          <ScalarProperty Name="CustomerAadharCardNumber" ColumnName="CustomerAadharCardNumber" />
+          <ScalarProperty Name="CustomerEmailId" ColumnName="CustomerEmailId" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="CustomerState" ColumnName="CustomerState" />
+          <ScalarProperty Name="CustomerCity" ColumnName="CustomerCity" />
+          <ScalarProperty Name="CustomerPIN" ColumnName="CustomerPIN" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTables">
+      <EntityTypeMapping TypeName="BankAppModel7.TransactionTable">
+        <MappingFragment StoreEntitySet="TransactionTable">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BenificiaryName" ColumnName="BenificiaryName" />
+          <ScalarProperty Name="IFSC" ColumnName="IFSC" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
